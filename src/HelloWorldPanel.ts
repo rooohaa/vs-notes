@@ -125,7 +125,7 @@ export class HelloWorldPanel {
   private _getHtmlForWebview(webview: vscode.Webview) {
     // And the uri we use to load this script in the webview
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, 'media', 'main.js')
+      vscode.Uri.joinPath(this._extensionUri, 'out/compiled', 'sidebar.js')
     );
 
     const stylesResetUri = webview.asWebviewUri(
@@ -157,9 +157,6 @@ export class HelloWorldPanel {
         <script nonce="${nonce}"></script>
 			</head>
       <body>
-        <h1>Hello from vscode</h1>
-        <input type='text' placeholder="Text here..." />
-        <button id="btn">Send</button>
 			</body>
       <script src="${scriptUri}" nonce="${nonce}"></script>
 			</html>`;
