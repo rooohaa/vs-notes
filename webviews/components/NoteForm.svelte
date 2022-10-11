@@ -1,7 +1,10 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
   export let isActive: boolean;
+
   let title = '';
   let description = '';
+  const dispatch = createEventDispatcher();
 
   const handleSubmit = () => {
     if (!title || !description) {
@@ -12,7 +15,21 @@
       return;
     }
 
-    console.log({ title, description });
+    const payload = {
+      id: Math.floor(Math.random() * 100),
+      title,
+      description,
+      created: new Date().toLocaleDateString(),
+    };
+
+    dispatch('create', payload);
+
+    resetForm();
+  };
+
+  const resetForm = () => {
+    title = '';
+    description = '';
   };
 </script>
 
@@ -20,11 +37,11 @@
   {#if isActive}
     <form on:submit|preventDefault={handleSubmit}>
       <div class="form-control">
-        <input bind:value={title} type="text" placeholder="Title" />
+        <input bind:value={title} type="text" placeholder="Title" maxlength="40" />
       </div>
 
       <div class="form-control">
-        <input bind:value={description} type="text" placeholder="Description" />
+        <input bind:value={description} type="text" placeholder="Description" maxlength="80" />
       </div>
 
       <div class="form-control">

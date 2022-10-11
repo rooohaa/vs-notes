@@ -42,6 +42,20 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
           vscode.window.showWarningMessage(data.value);
           break;
         }
+        case 'onDeleteNote': {
+          const ans = await vscode.window.showInformationMessage(
+            `Are you sure you want to delete this note?`,
+            'Yes',
+            'No'
+          );
+
+          console.log(ans);
+
+          this._view?.webview.postMessage({
+            type: 'delete-confirm',
+            value: ans,
+          });
+        }
         // case 'tokens': {
         //   await Util.globalState.update(accessTokenKey, data.accessToken);
         //   await Util.globalState.update(refreshTokenKey, data.refreshToken);
