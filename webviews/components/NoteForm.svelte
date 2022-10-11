@@ -4,6 +4,8 @@
 
   let title = '';
   let description = '';
+  let titleMaxLen = 40;
+  let descriptionMaxLen = 80;
   const dispatch = createEventDispatcher();
 
   const handleSubmit = () => {
@@ -37,11 +39,25 @@
   {#if isActive}
     <form on:submit|preventDefault={handleSubmit}>
       <div class="form-control">
-        <input bind:value={title} type="text" placeholder="Title" maxlength="40" />
+        <input
+          bind:value={title}
+          type="text"
+          placeholder="Title"
+          maxlength={titleMaxLen}
+        />
+        <div class="form-control-maxlen">{title.length} / {titleMaxLen}</div>
       </div>
 
       <div class="form-control">
-        <input bind:value={description} type="text" placeholder="Description" maxlength="80" />
+        <input
+          bind:value={description}
+          type="text"
+          placeholder="Description"
+          maxlength={descriptionMaxLen}
+        />
+        <div class="form-control-maxlen">
+          {description.length} / {descriptionMaxLen}
+        </div>
       </div>
 
       <div class="form-control">
@@ -61,5 +77,19 @@
 
   .form-wrapper form {
     width: 100%;
+  }
+
+  .form-wrapper .form-control {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+  }
+
+  .form-control-maxlen {
+    align-self: flex-end;
+    font-size: 10px;
+    line-height: 14px;
+    color: #bdbdbd;
   }
 </style>
