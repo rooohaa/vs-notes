@@ -1,14 +1,31 @@
 <script lang="ts">
-  let password = '';
+  import NoteForm from './NoteForm.svelte';
+
+  let isActive = false;
+  $: actionText = isActive ? '- hide form' : '+ add note';
+
+  const handleFormToggle = () => {
+    isActive = !isActive;
+  };
 </script>
 
-<div>my sidebar</div>
+<div class="sidebar-container">
+  <div class="sidebar-form-opener">
+    <a href="#" on:click={handleFormToggle}>{actionText}</a>
+  </div>
 
-<input bind:value={password} type="password" placeholder="Password" />
-<div>Passsword: {password}</div>
+  <NoteForm {isActive} />
+</div>
 
 <style>
-  div {
-    color: pink;
+  .sidebar-form-opener {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .sidebar-form-opener a {
+    text-decoration: none;
+    outline: none;
   }
 </style>

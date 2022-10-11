@@ -35,6 +35,13 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
           vscode.window.showErrorMessage(data.value);
           break;
         }
+        case 'onWarning': {
+          if (!data.value) {
+            return;
+          }
+          vscode.window.showWarningMessage(data.value);
+          break;
+        }
         // case 'tokens': {
         //   await Util.globalState.update(accessTokenKey, data.accessToken);
         //   await Util.globalState.update(refreshTokenKey, data.refreshToken);
@@ -83,6 +90,9 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 				<link href="${styleResetUri}" rel="stylesheet">
 				<link href="${styleVSCodeUri}" rel="stylesheet">
         <link href="${styleMainUri}" rel="stylesheet">
+        <script nonce="${nonce}">
+          const tsvscode = acquireVsCodeApi();
+        </script>
 			</head>
       <body>
 				<script nonce="${nonce}" src="${scriptUri}"></script>

@@ -10,10 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onView:vs-notes-sidebar",
-    "onCommand:vs-notes.helloWorld",
-    "onCommand:vs-notes.askQuestion",
-    "onCommand:vs-notes.refresh"
+    "onView:vs-notes-sidebar"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -42,16 +39,6 @@
         "category": "VS-Notes",
         "title": "Hello World",
         "command": "vs-notes.helloWorld"
-      },
-      {
-        "category": "VS-Notes",
-        "title": "Ask Question",
-        "command": "vs-notes.askQuestion"
-      },
-      {
-        "category": "VS-Notes",
-        "title": "Refresh",
-        "command": "vs-notes.refresh"
       }
     ]
   },
