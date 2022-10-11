@@ -49,8 +49,6 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
             'No'
           );
 
-          console.log(ans);
-
           this._view?.webview.postMessage({
             type: 'delete-confirm',
             value: ans,
