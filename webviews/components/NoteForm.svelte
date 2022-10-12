@@ -1,12 +1,13 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   export let isActive: boolean;
+  const dispatch = createEventDispatcher();
 
   let title = '';
   let description = '';
   let titleMaxLen = 40;
-  let descriptionMaxLen = 80;
-  const dispatch = createEventDispatcher();
+  let descriptionMaxLen = 100;
+  let formRef: HTMLFormElement;
 
   const handleSubmit = () => {
     if (!title || !description) {
@@ -33,11 +34,19 @@
     title = '';
     description = '';
   };
+
+  // Submit form on enter press.
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.code === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
 </script>
 
 <div class="form-wrapper">
   {#if isActive}
-    <form on:submit|preventDefault={handleSubmit}>
+    <form on:submit|preventDefault={handleSubmit} bind:this={formRef}>
       <div class="form-control">
         <input
           bind:value={title}
@@ -49,8 +58,9 @@
       </div>
 
       <div class="form-control">
-        <input
+        <textarea
           bind:value={description}
+          on:keydown={handleKeyDown}
           type="text"
           placeholder="Description"
           maxlength={descriptionMaxLen}
@@ -91,5 +101,10 @@
     font-size: 10px;
     line-height: 14px;
     color: #bdbdbd;
+  }
+
+  .form-control textarea {
+    resize: vertical;
+    max-height: 100px;
   }
 </style>
