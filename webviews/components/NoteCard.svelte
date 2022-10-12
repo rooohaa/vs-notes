@@ -64,7 +64,7 @@
     flex-direction: column;
     row-gap: 5px;
 
-    background-color: #3c3c3c;
+    background-color: var(--vscode-input-background);
   }
 
   .note-card:hover .note-card-actions {
@@ -101,14 +101,14 @@
   }
 
   .note-card-title {
-    color: #fff;
+    color: var(--vscode-foreground);
     font-size: 14px;
     line-height: 18px;
     font-weight: 500;
   }
 
   .note-card-descr {
-    color: #bdbdbd;
+    color: var(--vscode-foreground);
     font-size: 12px;
     line-height: 16px;
   }

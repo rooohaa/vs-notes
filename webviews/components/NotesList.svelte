@@ -25,7 +25,7 @@
   .notes-empty-txt {
     text-align: center;
     font-size: 12px;
-    color: #bdbdbb;
+    color: var(--vscode-foreground);
     line-height: 17px;
   }
 
