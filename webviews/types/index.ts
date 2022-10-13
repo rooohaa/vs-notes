@@ -4,3 +4,9 @@ export type TNoteItem = {
   description: string;
   created: string;
 };
+
+export type TUser = {
+  id: number;
+  name?: string;
+  githubId: string;
+};
