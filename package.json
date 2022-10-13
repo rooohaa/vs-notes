@@ -10,7 +10,9 @@
     "Other"
   ],
   "activationEvents": [
-    "onView:vs-notes-sidebar"
+    "onView:vs-notes-sidebar",
+    "onCommand:vs-notes.authenticate",
+    "onCommand:vs-notes.welcome"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -37,8 +39,13 @@
     "commands": [
       {
         "category": "VS-Notes",
-        "title": "Hello World",
-        "command": "vs-notes.helloWorld"
+        "title": "Authenticate",
+        "command": "vs-notes.authenticate"
+      },
+      {
+        "category": "VS-Notes",
+        "title": "Welcome",
+        "command": "vs-notes.welcome"
       }
     ]
   },
@@ -61,6 +68,7 @@
     "@types/glob": "^8.0.0",
     "@types/mocha": "^10.0.0",
     "@types/node": "16.x",
+    "@types/polka": "^0.5.4",
     "@types/vscode": "^1.72.0",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
@@ -80,5 +88,8 @@
     "typescript": "^4.8.4",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "polka": "^0.5.2"
   }
 }
