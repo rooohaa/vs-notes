@@ -3,6 +3,7 @@
   import type { TNoteItem, TUser } from '../types';
   import NoteForm from './NoteForm.svelte';
   import NotesList from './NotesList.svelte';
+  import UserCard from './UserCard.svelte';
 
   let accessToken = '';
   let user: TUser | null = null;
@@ -10,7 +11,6 @@
   let isActive = false;
   let deletingNoteId: number | null = null;
   let notes: TNoteItem[] = [];
-  $: actionText = isActive ? '- hide form' : '+ add note';
 
   onMount(() => {
     window.addEventListener('message', async (event) => {
@@ -72,14 +72,14 @@
   {#if loading}
     <div>loading...</div>
   {:else if user}
-    <div>Hello {user.name}</div>
-    <div class="sidebar-form-opener">
-      <a href="#" on:click={handleFormToggle}>{actionText}</a>
-    </div>
+    <UserCard
+      {user}
+      formIsActive={isActive}
+      on:logout={handleLogout}
+      on:toggle={handleFormToggle}
+    />
     <NoteForm {isActive} on:create={handleNoteCreate} />
     <NotesList {notes} on:delete={askDeleteConfirm} />
-
-    <button on:click={handleLogout}>logout</button>
   {:else}
     <button
       on:click={() =>
