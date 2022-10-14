@@ -8,7 +8,7 @@
   let accessToken = '';
   let user: TUser | null = null;
   let loading = false;
-  let isActive = false;
+  let isActive = tsvscode.getState()?.formIsActive || false;
   let deletingNoteId: number | null = null;
   let notes: TNoteItem[] = [];
 
@@ -41,6 +41,7 @@
 
   const handleFormToggle = () => {
     isActive = !isActive;
+    tsvscode.setState({ formIsActive: isActive });
   };
 
   const handleNoteDelete = (ans: string) => {
