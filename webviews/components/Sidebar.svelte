@@ -90,14 +90,4 @@
 </div>
 
 <style>
-  .sidebar-form-opener {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  .sidebar-form-opener a {
-    text-decoration: none;
-    outline: none;
-  }
 </style>

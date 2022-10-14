@@ -7,7 +7,6 @@
   let description = '';
   let titleMaxLen = 40;
   let descriptionMaxLen = 100;
-  let formRef: HTMLFormElement;
 
   const handleSubmit = () => {
     if (!title || !description) {
@@ -46,7 +45,7 @@
 
 <div class="form-wrapper">
   {#if isActive}
-    <form on:submit|preventDefault={handleSubmit} bind:this={formRef}>
+    <form on:submit|preventDefault={handleSubmit}>
       <div class="form-control">
         <input
           bind:value={title}

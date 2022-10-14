@@ -2,7 +2,7 @@
   import type { TNoteItem } from '../types';
   import NoteCard from './NoteCard.svelte';
 
-  export let notes: TNoteItem[];
+  export let notes: TNoteItem[] = [];
 </script>
 
 <div class="notes-list-wrapper">
